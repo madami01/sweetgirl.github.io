@@ -1,0 +1,127 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="heart.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hello.heyy sweet girl.</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            background-color: #FB96AC; /* Background color */
+            color: white; /* Text color */
+            font-family: 'Josefin Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            position: relative; /* For confetti positioning */
+        }
+        .button {
+            background-color: white;
+            color: #FB96AC;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        .button:hover {
+            opacity: 0.8;
+        }
+        img {
+            width: 200px; /* Adjust size as needed */
+        }
+        .yay-message {
+            display: none; /* Hidden by default */
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <h1>Heyyy, sweet girl.</h1>
+        
+        <!-- Audio Element for Background Music -->
+        <audio id="background-music" loop>
+            <source src="Bruno_Mars.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        
+        <img src="character/one.png" alt="Character Image">
+        <p></p>
+        <button class="button" onclick="nextStep()">Next</button>
+    </div>
+
+    <div class="yay-message">
+        <h1>Yayyyy!!!!</h1>
+        <img src="character/yayyyy.png" alt="Yay Image" />
+    </div>
+
+    <script>
+        let currentStep = 0;
+        const steps = [
+            {
+                content: "Heyyy, sweet girl!!",
+                image: "character/one.png"
+            },
+            {
+                content: "As i reflect on our beautiful journey over the past few years, from playful moments with love to challenges, each experience has woven a special thread into the tapestry of our friendship",
+                image: "character/image b.png"
+            },
+            {
+                content: "And through these times, I've always known that yeah, I want this girl. The feelings are different!!",
+                image: "character/image dd.png"
+            },
+            {
+                content: " Your unique sweetness & gentle spirit makes everyone feel special, making it impossible not to adore you, you're smart, beautiful & you make spending time with you feels short, bringing calm to my chaos & I truly value how you support me, always showing up when it matters.",
+                image: "character/four.png"
+            },
+            {
+                content: "I love your playful side and the joy it brings us, your beautiful eyes!!. You deserve all the warmth and love in the world. ",
+                image: "character/five.png"
+            },
+            {
+                content: "...now I've got a question for you…",
+                image: "character/six.png"
+            },
+            {
+                content: "Will you be my Val? Let's create more unforgettable memories together...",
+                image: "character/seven.png"
+            }
+        ];
+
+        function nextStep() {
+            currentStep++;
+            if (currentStep < steps.length) {
+                document.querySelector('h1').innerText = steps[currentStep].content;
+                document.querySelector('img').src = steps[currentStep].image;
+                
+                // Play audio on the first step
+                if (currentStep === 1) {
+                    document.getElementById('background-music').play();
+                }
+
+                if (currentStep === steps.length - 1) {
+                    document.querySelector('.button').innerText = 'Yes';
+                    document.querySelector('.button').onclick = () => showYayMessage();
+                }
+            }
+        }
+
+        function showYayMessage() {
+            // Show yay message and image
+            document.querySelector('.yay-message').style.display = 'block';
+            
+            // Show confetti
+            confetti({
+                particleCount: 200,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+    </script>
+</body>
+</html>
